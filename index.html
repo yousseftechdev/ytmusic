@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youssef Tech</title>
+    <link rel="shortcut icon" href="images/3.png" type="image/x-icon">
+    <style>
+        body {
+            font-size: 25px;
+            font-family: monospace;
+            background-color: #272727;
+            color: #fff;
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            grid-template-rows: 960px;
+            grid-column-gap: 20px;
+            justify-content: space-around;
+            align-content: center;
+            justify-items: space-around;
+            align-items: space-around;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .mainCard {
+            background-color: #494949;
+            margin: 17px;
+            padding: 20px;
+            border-radius: 30px;
+        }
+
+        #pfp {
+            width: 400px;
+            height: 500px;
+            outline: 3px solid #000;
+            cursor: pointer;
+            transform: translate(0, 100px);
+            filter: prespective(1000px);
+            transition: all 500ms, transform 700ms;
+        }
+
+        #pfp:hover {
+            transform: translate(0, -5px);
+            filter: drop-shadow(30px 10px 4px #4444dd);
+            animation: shadowColor 1s infinite ease;
+        }
+
+        .cards {
+            background-color: #494949;
+            margin: 17px;
+            padding: 20px;
+            border-radius: 30px;
+            outline: 3px solid #000;
+            transition: all 200ms;
+        }
+
+        .cards:hover {
+            box-shadow: 0px 0px 10px 10px rgb(185, 87, 255);
+        }
+
+        img {
+            width: 300px;
+            height: 200px;
+            border-radius: 30px;
+        }
+
+        .wave {
+            position: relative;
+        }
+
+        .wave a {
+            position: relative;
+            display: inline-block;
+            animation: jump 3s ease-in-out infinite;
+            animation-delay: calc(0.1s * var(--i));
+        }
+
+        @keyframes shadowColor {
+            0% {
+                box-shadow: hue-rotate(0deg);
+            }
+
+            25% {
+                box-shadow: hue-rotate(45deg);
+            }
+
+            50% {
+                box-shadow: hue-rotate(90deg);
+            }
+
+            75% {
+                box-shadow: hue-rotate(135deg);
+            }
+
+            100% {
+                box-shadow: hue-rotate(180deg);
+            }
+        }
+
+        @keyframes jump {
+            0% {
+                transform: translateY(0px);
+            }
+
+            20% {
+                transform: translateY(-35px);
+            }
+
+            40%,
+            100% {
+                transform: translateY(0px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="mainCard">
+            <a href="http://github.com/youssef-mostafa1534" target="_blank" rel="noopener noreferrer">
+                <img src="images/youssef.jpg" alt="PFP" id="pfp">
+            </a>
+            <h1 id="youssef-tech">
+                <b class="wave">
+                    <a style="--i:0">Y</a>
+                    <a style="--i:3">O</a>
+                    <a style="--i:6">U</a>
+                    <a style="--i:9">S</a>
+                    <a style="--i:13">S</a>
+                    <a style="--i:16">E</a>
+                    <a style="--i:19">F</a>
+                </b>
+            </h1>
+            <ul>
+                <b>
+                    <li>👋 Hi, I'm Youssef Mostafa</li>
+                    <li>👀 I'm interested in ...</li>
+                    <li>🌱 I'm currently learning ...</li>
+                    <li>📫 How to reach me ...</li>
+                </b>
+            </ul>
+        </div>
+        <div class="mainCard">
+            <a href="https://youssef-mostafa1534.github.io/Nature/">
+                <div class="cards">
+                    <img src="images/nature.png" alt="nature">
+                    <h4>Nature</h4>
+                    <h6>Save The Earth</h6>
+                </div>
+            </a>
+            <br>
+            <a href="music.html">
+                <div class="cards">
+                    <img src="images/music.png" alt="nature">
+                    <h4>YTMusic</h4>
+                    <h6>The Youssef Tech Custom Audio Player</h6>
+                </div>
+            </a>
+        </div>
+    </main>
+</body>
+
+</html>
