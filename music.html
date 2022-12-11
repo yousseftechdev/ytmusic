@@ -33,6 +33,7 @@
         ::-webkit-scrollbar-thumb {
             background: #c64343;
             border-radius: 30px;
+            height: 100px;
         }
 
         /* Handle on hover */
@@ -46,8 +47,9 @@
 
         body {
             background-image: linear-gradient(to bottom,
-                    rgba(170, 255, 180, 0.8),
+                    rgba(170, 180, 255, 1),
                     rgba(255, 0, 0, 0.527));
+            background-repeat: no-repeat;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -55,23 +57,26 @@
             justify-content: center;
             font-family: "Lato", sans-serif;
             margin: 0;
+            padding: 0;
             font-size: larger;
         }
 
         .musicCon {
+            width: auto;
             background-color: #fff;
             border-radius: 15px;
             box-shadow: 0 20px 20px 0 rgba(255, 88, 88, 0.9);
             display: flex;
             padding: 20px 30px;
             position: relative;
-            margin: 100px 0;
+            margin: 10px 0;
             z-index: 10;
         }
 
         .imgCon {
             position: relative;
             width: 110px;
+            transition: transform 0.3 ease-in-out;
         }
 
         .imgCon img {
@@ -83,7 +88,6 @@
             bottom: 0;
             left: 0;
             animation: rotate 6.5s linear infinite;
-
             animation-play-state: paused;
         }
 
@@ -94,18 +98,21 @@
         .nav {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-around;
             z-index: 1;
         }
 
         .actionBtn {
             background-color: #fff;
-            border: 0;
+            border: 5px solid #de4545;
+            border-radius: 5px;
+            box-shadow: 0 0 10px 0 rgba(255, 88, 88, 0.9);
             color: #de4545;
             font-size: 20px;
             cursor: pointer;
             padding: 10px;
-            margin: 0 20px;
+            margin: 0 5px;
+            transition: all 1s;
         }
 
         .actionBtn.big {
@@ -119,6 +126,7 @@
 
         .musicInfo {
             background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
             border-radius: 15px 15px 0 0;
             position: absolute;
             top: 0;
@@ -126,7 +134,7 @@
             width: calc(100% - 40px);
             padding: 10px 10px 10px 150px;
             opacity: 0;
-            transform: translateY(-100%);
+            transform: translateY(100%);
             transition: transform 0.3s ease-in, opacity 0.3s ease-in;
             z-index: 0;
         }
@@ -141,41 +149,42 @@
         }
 
         .progressCon {
-            background: #fff;
+            background: #6a6a6a;
             border-radius: 5px;
             cursor: pointer;
             margin: 10px 0;
-            height: 4px;
+            height: 10px;
             width: 100%;
         }
 
+        /* rgb(50, 100, 255)  */
         .progress {
-            background-color: #fe8daa;
+            background: linear-gradient(to left, #ff0040, #fe8daa);
+            /* background: linear-gradient(to left, rgb(255, 100, 50), rgb(255, 167, 138));*/
             border-radius: 5px;
             height: 100%;
             width: 50%;
-            transition: width 0.1s linear;
+            transition: width 80ms linear;
+            animation: hueShift 3s infinite;
         }
 
         .title {
-            background: linear-gradient(to bottom left, rgb(255, 100, 50), rgb(50, 100, 255));
+            background: linear-gradient(to left, #ff0040, #fe8daa);
             color: #fff;
             border-radius: 15px;
             padding: 30px;
             transition: background-color 0.3s ease-in-out, transform 2s ease-in-out;
-            animation: rotateTitle 1.5s linear infinite, hueShift 1s infinite;
+            animation: rotateTitle 1.5s linear infinite, hueShift 3s infinite ease-in-out;
         }
 
         .list {
-            width: 600px;
-            height: 300px;
-            background-color: #fff;
+            width: auto;
+            height: 900px;
+            background-color: rgba(255, 255, 255);
             border-radius: 15px;
-            box-shadow: 0 20px 20px 0 rgba(255, 88, 88);
+            box-shadow: 0 20px 20px 10px rgba(255, 88, 88);
             padding: 20px 30px;
-            position: relative;
-            margin: 100px 0;
-            z-index: 10;
+            margin: 15px;
             overflow-y: scroll;
         }
 
@@ -186,14 +195,46 @@
             width: 110px;
         }
 
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
+        .item {
+            border-radius: 30px;
+            font-size: 30px;
+            transition: all 0.3s;
+        }
+
+        .item:hover {
+            background-color: rgba(201, 0, 0, 0.6);
+            color: white;
+        }
+
+        .item:active {
+            transition: all 0s;
+            background: #bc0000;
+            color: white;
+        }
+
+
+        @media only screen and (max-width: 600px) {
+            /*Big smartphones [426px -> 600px]*/
+            .musicCon{
+                width: 80%;
+            }
+        }
+
+        @media only screen and (max-width: 425px) {
+            /*Small smartphones [325px -> 425px]*/
+            .musicCon{
+                width: 100%;
             }
 
-            to {
-                transform: rotate(360deg);
+            .imgCon{
+                display: none;
             }
+
+            .musicCon.play .imgCon{
+                display: inherit;
+                transform: translateY(-100px);
+            }
+            
         }
 
         @keyframes rotateTitle {
@@ -212,23 +253,11 @@
 
         @keyframes hueShift {
 
-            0% {
+            from {
                 filter: hue-rotate(0deg);
             }
 
-            25% {
-                filter: hue-rotate(90deg);
-            }
-
-            50% {
-                filter: hue-rotate(180deg);
-            }
-
-            75% {
-                filter: hue-rotate(270deg);
-            }
-
-            100% {
+            to {
                 filter: hue-rotate(360deg);
             }
         }
@@ -261,53 +290,160 @@
         </div>
     </div>
     <div class="list">
-        <div class="item" onclick="loadSong(songs[0])"><img src="img/Discord Remix.png" alt="">Discord Remix</div>
+
+        <div class="item" onclick="loadSong(songs[1]);playSong();"><img src="img/Space Worm Food.png" alt="">
+            <center>Space Worm Food</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[1])"><img src="img/Space Worm Food.png" alt=""> Space Worm Food</div>
+        <div class="item" onclick="loadSong(songs[2]);playSong();"><img src="img/Wii Shop Music.png" alt="">
+            <center>Wii Shop Music</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[2])"><img src="img/Wii Shop Music.png" alt=""> Wii Shop Music</div>
+        <div class="item" onclick="loadSong(songs[3]);playSong();"><img src="img/Lancer Theme Remix.png" alt="">
+            <center>Lancer Theme Remix</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[3])"><img src="img/Lancer Theme Remix.png" alt=""> Lancer Theme Remix</div>
+        <div class="item" onclick="loadSong(songs[4]);playSong();"><img src="img/Lofi.png" alt="">
+            <center>Lofi</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[4])"><img src="img/Lofi.png" alt=""> Lofi</div>
+        <div class="item" onclick="loadSong(songs[5]);playSong();"><img src="img/Superstitous Foundation.png" alt="">
+            <center>Superstitous Foundation</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[5])"><img src="img/Superstitous Foundation.png" alt=""> Superstitous Foundation</div>
+        <div class="item" onclick="loadSong(songs[6]);playSong();"><img src="img/Chiptune.png" alt="">
+            <center>Chiptune</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[6])"><img src="img/Chiller.png" alt=""> Chiller</div>
+        <div class="item" onclick="loadSong(songs[7]);playSong();"><img src="img/Chiller.png" alt="">
+            <center>Chiller</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[7])"><img src="img/The Windows Update.png" alt=""> The Windows Update</div>
+        <div class="item" onclick="loadSong(songs[8]);playSong();"><img src="img/The Windows Update.png" alt="">
+            <center>The Windows Update</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[8])"><img src="img/The Search Engine.png" alt=""> The Search Engine</div>
+        <div class="item" onclick="loadSong(songs[9]);playSong();"><img src="img/The Search Engine.png" alt="">
+            <center>The Search Engine</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[9])"><img src="img/Noir Et Blanc Vie Birth Noir.png" alt=""> Noir Et Blanc Vie Birth Noir</div>
+        <div class="item" onclick="loadSong(songs[10]);playSong();"><img src="img/Noir Et Blanc Vie Birth Noir.png"
+                alt="">
+            <center>Noir Et Blanc Vie Birth Noir</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[10])"><img src="img/Poltergeist.png" alt=""> Poltergeist</div>
+        <div class="item" onclick="loadSong(songs[11]);playSong();"><img src="img/Poltergeist.png" alt="">
+            <center>Poltergeist</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[11])"><img src="img/Haunted.png" alt=""> Haunted</div>
+        <div class="item" onclick="loadSong(songs[12]);playSong();"><img src="img/Haunted.png" alt="">
+            <center>Haunted</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[12])"><img src="img/Ksyantos.png" alt=""> Ksyantos</div>
+        <div class="item" onclick="loadSong(songs[13]);playSong();"><img src="img/Ksyantos.png" alt="">
+            <center>Ksyantos</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[13])"><img src="img/The Bywater.png" alt=""> The Bywater</div>
+        <div class="item" onclick="loadSong(songs[14]);playSong();"><img src="img/The Bywater.png" alt="">
+            <center>The Bywater</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[14])"><img src="img/Smartphone Calling Back.png" alt=""> Smartphone Calling Back</div>
+        <div class="item" onclick="loadSong(songs[15]);playSong();"><img src="img/Smartphone Calling Back.png" alt="">
+            <center>Smartphone Calling Back</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[15])"><img src="img/Creo - We Can Dream.png" alt=""> Creo - We Can Dream</div>
+        <div class="item" onclick="loadSong(songs[16]);playSong();"><img src="img/Creo - We Can Dream.png" alt="">
+            <center>We Can Dream</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[16])"><img src="img/Akihabara Cruise.png" alt="">Akihabara Cruise</div>
+        <div class="item" onclick="loadSong(songs[17]);playSong();"><img src="img/Akihabara Cruise.png" alt="">
+            <center>Akihabara Cruise</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[17])"><img src="img/Blue Bird Lofi.png" alt=""> Blue Bird Lofi</div>
+        <div class="item" onclick="loadSong(songs[18]);playSong();"><img src="img/Blue Bird Lofi.png" alt="">
+            <center>Blue Bird Lofi</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[18])"><img src="img/A cuel angels theisis lofi.png" alt=""> A cuel angels theisis lofi</div>
+        <div class="item" onclick="loadSong(songs[19]);playSong();"><img src="img/A cuel angels theisis lofi.png"
+                alt="">
+            <center>A cuel angels theisis lofi</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[19])"><img src="img/Zankyou Sanka.png" alt=""> Zankyou Sanka</div>
+        <div class="item" onclick="loadSong(songs[20]);playSong();"><img src="img/Zankyou Sanka.png" alt="">
+            <center>Zankyou Sanka</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[20])"><img src="img/Gurenge Lofi.png" alt=""> Gurenge Lofi</div>
+        <div class="item" onclick="loadSong(songs[21]);playSong();"><img src="img/Gurenge Lofi.png" alt="">
+            <center>Gurenge Lofi</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[21])"><img src="img/Golden Wind Lofi.png" alt=""> Golden Wind Lofi</div>
+        <div class="item" onclick="loadSong(songs[22]);playSong();"><img src="img/Golden Wind Lofi.png" alt="">
+            <center>Golden Wind Lofi</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[22])"><img src="img/Netsujou no Spectrum.png" alt=""> Netsujou no Spectrum</div>
+        <div class="item" onclick="loadSong(songs[23]);playSong();"><img src="img/Netsujou no Spectrum.png" alt="">
+            <center>Netsujou no Spectrum</center>
+        </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[23])"><img src="img/Zenitsu Theme.png" alt=""> Zenitsu Theme</div>
+        <div class="item" onclick="loadSong(songs[24]);playSong();"><img src="img/Zenitsu Theme.png" alt="">
+            <center>Zenitsu Theme</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[25]);playSong();"><img src="img/Tanjiro No Uta Lofi.png" alt="">
+            <center>Tanjiro No Uta Lofi</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[26]);playSong();"><img src="img/Pumped Up Kicks.png" alt="">
+            <center>Pumped Up Kicks</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[27]);playSong();"><img src="img/Next To You.png" alt="">
+            <center>Next To You</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[28]);playSong();"><img src="img/La La La.png" alt="">
+            <center>La La La</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[29]);playSong();"><img src="img/Industry Baby.png" alt="">
+            <center>Industry Baby</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[30]);playSong();"><img src="img/Enemy.png" alt="">
+            <center>Enemy</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[31]);playSong();"><img src="img/Bones.png" alt="">
+            <center>Bones</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[32]);playSong();"><img src="img/Venom.png" alt="">
+            <center>Venom</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[33]);playSong();"><img src="img/Rap God.png" alt="">
+            <center>Rap God</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[34]);playSong();"><img src="img/We Go!.png" alt="">
+            <center>We Go!</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[35]);playSong();"><img src="img/Hard Knock Days.png" alt="">
+            <center>Hard Knock Days</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[36]);playSong();"><img src="img/Blue Bird (English).png" alt="">
+            <center>Blue Bird (English)</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[37]);playSong();"><img src="img/House Of Memories.png" alt="">
+            <center>House Of Memories</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[0]);playSong();"><img src="img/Discord Remix.png" alt="">
+            <center>Discord Remix</center>
+        </div>
     </div>
     <script>
         const musicCon = document.querySelector('.musicCon');
@@ -322,10 +458,22 @@
         const audioCtx = new AudioContext();
 
         // Song titles
-        const songs = ["Discord Remix", "Space Worm Food", "Wii Shop Music", "Lancer Theme Remix", "Lofi", "Superstitous Foundation", "Chiptune", "Chiller", "The Windows Update", "The Search Engine", "Noir Et Blanc Vie Birth Noir", "Poltergeist", "Haunted", "Ksyantos", "The Bywater", "Smartphone Calling Back", "Creo - We Can Dream", "Akihabara Cruise", "Blue Bird Lofi", "A cuel angels theisis lofi", "Zankyou Sanka", "Gurenge Lofi", "Golden Wind Lofi", "Netsujou no Spectrum", "Zenitsu Theme"];
+        const songs = ["Discord Remix", "Space Worm Food", "Wii Shop Music",
+            "Lancer Theme Remix", "Lofi", "Superstitous Foundation",
+            "Chiptune", "Chiller", "The Windows Update",
+            "The Search Engine", "Noir Et Blanc Vie Birth Noir", "Poltergeist",
+            "Haunted", "Ksyantos", "The Bywater",
+            "Smartphone Calling Back", "Creo - We Can Dream",
+            "Akihabara Cruise", "Blue Bird Lofi", "A cuel angels theisis lofi",
+            "Zankyou Sanka", "Gurenge Lofi", "Golden Wind Lofi",
+            "Netsujou no Spectrum", "Zenitsu Theme", "Tanjiro No Uta Lofi",
+            "Pumped Up Kicks", "Next To You", "La La La",
+            "Industry Baby", "Enemy", "Bones",
+            "Venom", "Rap God", "We Go!",
+            "Hard knock Days", "Blue Bird (English)", "House Of Memories"];
 
         // keep track of songs
-        let songIndex = 24;
+        let songIndex = 31;
 
         // update song details
         function loadSong(song) {
@@ -369,7 +517,7 @@
             }
             loadSong(songs[songIndex]);
             if (songIndex > songs.length - 1) {
-                songIndex = 16;
+                songIndex = 24;
             }
             loadSong(songs[songIndex]);
             if (isPlaying) {
