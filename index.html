@@ -33,7 +33,7 @@
         ::-webkit-scrollbar-thumb {
             background: #c643c2;
             border-radius: 30px;
-            height: 100px;
+            height: 50px;
         }
 
         /* Handle on hover */
@@ -65,7 +65,7 @@
             width: auto;
             background-color: #fff;
             border-radius: 15px;
-            box-shadow: 0 20px 20px 0 rgba(255, 88, 255);
+            box-shadow: 0 0 20px 10px rgba(255, 88, 255);
             display: flex;
             padding: 20px 30px;
             position: relative;
@@ -182,7 +182,7 @@
             height: 900px;
             background-color: rgba(255, 255, 255);
             border-radius: 15px;
-            box-shadow: 0 20px 20px 10px rgba(255, 88, 255);
+            box-shadow: 0 0 20px 10px rgba(255, 88, 255);
             padding: 20px 30px;
             margin: 15px;
             overflow-y: scroll;
@@ -197,7 +197,7 @@
 
         .item {
             border-radius: 30px;
-            font-size: 30px;
+            font-size: 25px;
             transition: all 0.3s;
         }
 
@@ -212,12 +212,27 @@
             color: white;
         }
 
+        #canvas {
+            position: fixed;
+            left: 10%;
+            top: 30%;
+            width: 20%;
+            height: 65%;
+            background-color: rgb(255, 255, 255);
+            border-radius: 30px;
+        }
 
         @media only screen and (max-width: 600px) {
 
             /*Big smartphones [426px -> 600px]*/
             .musicCon {
                 width: 80%;
+            }
+
+            #canvas {
+                position: unset;
+                width: 80%;
+                height: 20%;
             }
         }
 
@@ -237,6 +252,11 @@
                 transform: translateY(-100px);
             }
 
+            #canvas {
+                position: unset;
+                width: 100%;
+                height: 20%;
+            }
         }
 
         @keyframes rotate {
@@ -264,7 +284,6 @@
         }
 
         @keyframes hueShift {
-
             from {
                 filter: hue-rotate(0deg);
             }
@@ -301,6 +320,7 @@
             </button>
         </div>
     </div>
+    <canvas id="canvas"></canvas>
     <div class="list">
 
         <div class="item" onclick="loadSong(songs[1]);playSong();songIndex=1"><img src="img/Space Worm Food.png" alt="">
@@ -311,7 +331,8 @@
             <center>Wii Shop Music</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[3]);playSong();songIndex=3"><img src="img/Lancer Theme Remix.png" alt="">
+        <div class="item" onclick="loadSong(songs[3]);playSong();songIndex=3"><img src="img/Lancer Theme Remix.png"
+                alt="">
             <center>Lancer Theme Remix</center>
         </div>
         <hr>
@@ -319,181 +340,241 @@
             <center>Lofi</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[5]);playSong();songIndex=5"><img src="img/Superstitous Foundation.png" alt="">
+        <div class="item" onclick="loadSong(songs[5]);playSong();songIndex=5"><img src="img/Superstitous Foundation.png"
+                alt="">
             <center>Superstitous Foundation</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[6]);playSong();songIndex=6"><img src="img/Chiller.png" alt="">
+        <div class="item" onclick="loadSong(songs[6]);playSong();songIndex=6"><img src="img/Chiptune.png" alt="">
+            <center>Chiptune</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[7]);playSong();songIndex=7"><img src="img/Chiller.png" alt="">
             <center>Chiller</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[7]);playSong();songIndex=7"><img src="img/The Windows Update.png" alt="">
+        <div class="item" onclick="loadSong(songs[8]);playSong();songIndex=8"><img src="img/The Windows Update.png"
+                alt="">
             <center>The Windows Update</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[8]);playSong();songIndex=8"><img src="img/The Search Engine.png" alt="">
+        <div class="item" onclick="loadSong(songs[9]);playSong();songIndex=9"><img src="img/The Search Engine.png"
+                alt="">
             <center>The Search Engine</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[9]);playSong();songIndex=9"><img src="img/Noir Et Blanc Vie Birth Noir.png"
-                alt="">
+        <div class="item" onclick="loadSong(songs[10]);playSong();songIndex=10"><img
+                src="img/Noir Et Blanc Vie Birth Noir.png" alt="">
             <center>Noir Et Blanc Vie Birth Noir</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[10]);playSong();songIndex=10"><img src="img/Poltergeist.png" alt="">
+        <div class="item" onclick="loadSong(songs[11]);playSong();songIndex=11"><img src="img/Poltergeist.png" alt="">
             <center>Poltergeist</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[11]);playSong();songIndex=11"><img src="img/Haunted.png" alt="">
+        <div class="item" onclick="loadSong(songs[12]);playSong();songIndex=12"><img src="img/Haunted.png" alt="">
             <center>Haunted</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[12]);playSong();songIndex=12"><img src="img/Ksyantos.png" alt="">
+        <div class="item" onclick="loadSong(songs[13]);playSong();songIndex=13"><img src="img/Ksyantos.png" alt="">
             <center>Ksyantos</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[13]);playSong();songIndex=13"><img src="img/The Bywater.png" alt="">
+        <div class="item" onclick="loadSong(songs[14]);playSong();songIndex=14"><img src="img/The Bywater.png" alt="">
             <center>The Bywater</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[14]);playSong();songIndex=14"><img src="img/Smartphone Calling Back.png" alt="">
+        <div class="item" onclick="loadSong(songs[15]);playSong();songIndex=15"><img
+                src="img/Smartphone Calling Back.png" alt="">
             <center>Smartphone Calling Back</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[15]);playSong();songIndex=15"><img src="img/Creo - We Can Dream.png" alt="">
+        <div class="item" onclick="loadSong(songs[16]);playSong();songIndex=16"><img src="img/Creo - We Can Dream.png"
+                alt="">
             <center>We Can Dream</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[16]);playSong();songIndex=16"><img src="img/Akihabara Cruise.png" alt="">
+        <div class="item" onclick="loadSong(songs[17]);playSong();songIndex=17"><img src="img/Akihabara Cruise.png"
+                alt="">
             <center>Akihabara Cruise</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[17]);playSong();songIndex=17"><img src="img/Blue Bird Lofi.png" alt="">
+        <div class="item" onclick="loadSong(songs[18]);playSong();songIndex=18"><img src="img/Blue Bird Lofi.png"
+                alt="">
             <center>Blue Bird Lofi</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[18]);playSong();songIndex=18"><img src="img/A cuel angels theisis lofi.png"
-                alt="">
+        <div class="item" onclick="loadSong(songs[19]);playSong();songIndex=19"><img
+                src="img/A cuel angels theisis lofi.png" alt="">
             <center>A cuel angels theisis lofi</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[19]);playSong();songIndex=19"><img src="img/Zankyou Sanka.png" alt="">
+        <div class="item" onclick="loadSong(songs[20]);playSong();songIndex=20"><img src="img/Zankyou Sanka.png" alt="">
             <center>Zankyou Sanka</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[20]);playSong();songIndex=20"><img src="img/Gurenge Lofi.png" alt="">
+        <div class="item" onclick="loadSong(songs[21]);playSong();songIndex=21"><img src="img/Gurenge Lofi.png" alt="">
             <center>Gurenge Lofi</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[21]);playSong();songIndex=21"><img src="img/Golden Wind Lofi.png" alt="">
+        <div class="item" onclick="loadSong(songs[22]);playSong();songIndex=22"><img src="img/Golden Wind Lofi.png"
+                alt="">
             <center>Golden Wind Lofi</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[22]);playSong();songIndex=22"><img src="img/Netsujou no Spectrum.png" alt="">
+        <div class="item" onclick="loadSong(songs[23]);playSong();songIndex=23"><img src="img/Netsujou no Spectrum.png"
+                alt="">
             <center>Netsujou no Spectrum</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[23]);playSong();songIndex=23"><img src="img/Zenitsu Theme.png" alt="">
+        <div class="item" onclick="loadSong(songs[24]);playSong();songIndex=24"><img src="img/Zenitsu Theme.png" alt="">
             <center>Zenitsu Theme</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[24]);playSong();songIndex=24"><img src="img/Tanjiro No Uta Lofi.png" alt="">
+        <div class="item" onclick="loadSong(songs[25]);playSong();songIndex=25"><img src="img/Tanjiro No Uta Lofi.png"
+                alt="">
             <center>Tanjiro No Uta Lofi</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[25]);playSong();songIndex=25"><img src="img/Pumped Up Kicks.png" alt="">
+        <div class="item" onclick="loadSong(songs[26]);playSong();songIndex=26"><img src="img/Pumped Up Kicks.png"
+                alt="">
             <center>Pumped Up Kicks</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[26]);playSong();songIndex=26"><img src="img/Next To You.png" alt="">
+        <div class="item" onclick="loadSong(songs[27]);playSong();songIndex=27"><img src="img/Next To You.png" alt="">
             <center>Next To You</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[27]);playSong();songIndex=27"><img src="img/La La La.png" alt="">
+        <div class="item" onclick="loadSong(songs[28]);playSong();songIndex=28"><img src="img/La La La.png" alt="">
             <center>La La La</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[28]);playSong();songIndex=28"><img src="img/Industry Baby.png" alt="">
+        <div class="item" onclick="loadSong(songs[29]);playSong();songIndex=29"><img src="img/Industry Baby.png" alt="">
             <center>Industry Baby</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[29]);playSong();songIndex=29"><img src="img/Enemy.png" alt="">
+        <div class="item" onclick="loadSong(songs[30]);playSong();songIndex=30"><img src="img/Enemy.png" alt="">
             <center>Enemy</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[30]);playSong();songIndex=30"><img src="img/Bones.png" alt="">
+        <div class="item" onclick="loadSong(songs[31]);playSong();songIndex=31"><img src="img/Bones.png" alt="">
             <center>Bones</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[31]);playSong();songIndex=31"><img src="img/Venom.png" alt="">
+        <div class="item" onclick="loadSong(songs[32]);playSong();songIndex=32"><img src="img/Venom.png" alt="">
             <center>Venom</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[32]);playSong();songIndex=32"><img src="img/Rap God.png" alt="">
+        <div class="item" onclick="loadSong(songs[33]);playSong();songIndex=33"><img src="img/Rap God.png" alt="">
             <center>Rap God</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[33]);playSong();songIndex=33"><img src="img/We Go!.png" alt="">
+        <div class="item" onclick="loadSong(songs[34]);playSong();songIndex=34"><img src="img/We Go!.png" alt="">
             <center>We Go!</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[34]);playSong();songIndex=34"><img src="img/Hard Knock Days.png" alt="">
+        <div class="item" onclick="loadSong(songs[35]);playSong();songIndex=35"><img src="img/Hard Knock Days.png"
+                alt="">
             <center>Hard Knock Days</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[35]);playSong();songIndex=35"><img src="img/Blue Bird (English).png" alt="">
+        <div class="item" onclick="loadSong(songs[36]);playSong();songIndex=36"><img src="img/Blue Bird (English).png"
+                alt="">
             <center>Blue Bird (English)</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[36]);playSong();songIndex=36"><img src="img/House Of Memories.png" alt="">
+        <div class="item" onclick="loadSong(songs[37]);playSong();songIndex=37"><img src="img/House Of Memories.png"
+                alt="">
             <center>House Of Memories</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[37]);playSong();songIndex=37"><img src="img/Bad Apple.png" alt="">
+        <div class="item" onclick="loadSong(songs[38]);playSong();songIndex=38"><img src="img/Bad Apple.png" alt="">
             <center>Bad Apple</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[38]);playSong();songIndex=38"><img src="img/Bad Apple (English).png" alt="">
+        <div class="item" onclick="loadSong(songs[39]);playSong();songIndex=39"><img src="img/Bad Apple (English).png"
+                alt="">
             <center>Bad Apple (English)</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[39]);playSong();songIndex=39"><img src="img/Heat Waves.png" alt="">
+        <div class="item" onclick="loadSong(songs[40]);playSong();songIndex=40"><img src="img/Heat Waves.png" alt="">
             <center>Heat Waves</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[40]);playSong();songIndex=40"><img src="img/Living Life In The Night.png" alt="">
+        <div class="item" onclick="loadSong(songs[41]);playSong();songIndex=41"><img
+                src="img/Living Life In The Night.png" alt="">
             <center>Living Life In The Night</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[41]);playSong();songIndex=41"><img src="img/Dark Seeks Light.png" alt="">
+        <div class="item" onclick="loadSong(songs[42]);playSong();songIndex=42"><img src="img/Dark Seeks Light.png"
+                alt="">
             <center>Dark Seeks Light</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[42]);playSong();songIndex=42"><img src="img/Light Switch.png" alt="">
+        <div class="item" onclick="loadSong(songs[43]);playSong();songIndex=43"><img src="img/Light Switch.png" alt="">
             <center>Light Switch</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[43]);playSong();songIndex=43"><img src="img/Light Switch (Japanese).png" alt="">
+        <div class="item" onclick="loadSong(songs[44]);playSong();songIndex=44"><img
+                src="img/Light Switch (Japanese).png" alt="">
             <center>Light Switch (Japanese)</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[44]);playSong();songIndex=44"><img src="img/Rise.png" alt="">
+        <div class="item" onclick="loadSong(songs[45]);playSong();songIndex=45"><img src="img/Rise.png" alt="">
             <center>Rise</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[45]);playSong();songIndex=45"><img src="img/Levitating.png" alt="">
+        <div class="item" onclick="loadSong(songs[46]);playSong();songIndex=46"><img src="img/Levitating.png" alt="">
             <center>Levitating</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[46]);playSong();songIndex=46"><img src="img/Young Girl A.png" alt="">
+        <div class="item" onclick="loadSong(songs[47]);playSong();songIndex=47"><img src="img/Young Girl A.png" alt="">
             <center>Young Girl A</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[47]);playSong();songIndex=47"><img src="img/Toxic.png" alt="">
+        <div class="item" onclick="loadSong(songs[48]);playSong();songIndex=48"><img src="img/Toxic.png" alt="">
             <center>Toxic</center>
         </div>
         <hr>
-        <div class="item" onclick="loadSong(songs[0]);playSong();songIndex=0;"><img src="img/Discord Remix.png" alt="">
+        <div class="item" onclick="loadSong(songs[49]);playSong();songIndex=49"><img src="img/We Are!.png" alt="">
+            <center>We Are!</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[50]);playSong();songIndex=50"><img src="img/Unravel.png" alt="">
+            <center>Unravel</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[51]);playSong();songIndex=51"><img src="img/GIGACHAD ONE PIECE.png"
+                alt="">
+            <center>GIGACHAD ONE PIECE</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[52]);playSong();songIndex=52"><img src="img/Can You Feel My Heart.png"
+                alt="">
+            <center>Can You Feel My Heart</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[53]);playSong();songIndex=53"><img src="img/Dancin.png" alt="">
+            <center>Dancin</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[54]);playSong();songIndex=54"><img src="img/Departure!.png" alt="">
+            <center>Departure!</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[55]);playSong();songIndex=55"><img src="img/Kaikai Kitan.png" alt="">
+            <center>Kaikai Kitan</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[56]);playSong();songIndex=56"><img src="img/Bad Guy.png" alt="">
+            <center>Bad Guy</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[57]);playSong();songIndex=56"><img src="img/One Dance.png" alt="">
+            <center>One Dance</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[0]);playSong();songIndex=0"><img src="img/Discord Remix.png" alt="">
             <center>Discord Remix</center>
         </div>
     </div>
@@ -511,24 +592,27 @@
 
         // Song titles
         const songs = [
-                "Discord Remix", "Space Worm Food", "Wii Shop Music",
-                "Lancer Theme Remix", "Lofi", "Superstitous Foundation",
-                "Chiller", "The Windows Update",
-                "The Search Engine", "Noir Et Blanc Vie Birth Noir", "Poltergeist",
-                "Haunted", "Ksyantos", "The Bywater",
-                "Smartphone Calling Back", "Creo - We Can Dream",
-                "Akihabara Cruise", "Blue Bird Lofi", "A cuel angels theisis lofi",
-                "Zankyou Sanka", "Gurenge Lofi", "Golden Wind Lofi",
-                "Netsujou no Spectrum", "Zenitsu Theme", "Tanjiro No Uta Lofi",
-                "Pumped Up Kicks", "Next To You", "La La La",
-                "Industry Baby", "Enemy", "Bones",
-                "Venom", "Rap God", "We Go!",
-                "Hard Knock Days", "Blue Bird (English)", "House Of Memories",
-                "Bad Apple", "Bad Apple (English)", "Heat Waves",
-                "Living Life In The Night", "Dark Seeks Light", "Light Switch",
-                "Light Switch (Japanese)", "Rise", "Levitating",
-                "Young Girl A", "Toxic"
-            ];
+            "Discord Remix", "Space Worm Food", "Wii Shop Music",
+            "Lancer Theme Remix", "Lofi", "Superstitous Foundation",
+            "Chiptune", "Chiller", "The Windows Update",
+            "The Search Engine", "Noir Et Blanc Vie Birth Noir", "Poltergeist",
+            "Haunted", "Ksyantos", "The Bywater",
+            "Smartphone Calling Back", "Creo - We Can Dream",
+            "Akihabara Cruise", "Blue Bird Lofi", "A cuel angels theisis lofi",
+            "Zankyou Sanka", "Gurenge Lofi", "Golden Wind Lofi",
+            "Netsujou no Spectrum", "Zenitsu Theme", "Tanjiro No Uta Lofi",
+            "Pumped Up Kicks", "Next To You", "La La La",
+            "Industry Baby", "Enemy", "Bones",
+            "Venom", "Rap God", "We Go!",
+            "Hard Knock Days", "Blue Bird (English)", "House Of Memories",
+            "Bad Apple", "Bad Apple (English)", "Heat Waves",
+            "Living Life In The Night", "Dark Seeks Light", "Light Switch",
+            "Light Switch (Japanese)", "Rise", "Levitating",
+            "Young Girl A", "Toxic", "We Are!",
+            "Unravel", "GIGACHAD ONE PIECE", "Can You Feel My Heart",
+            "Dancin", "Departure!", "Kaikai Kitan",
+            "Bad Guy", "One Dance"
+        ];
 
         // keep track of songs
         let songIndex = 31;
@@ -575,7 +659,7 @@
             }
             loadSong(songs[songIndex]);
             if (songIndex > songs.length - 1) {
-                songIndex = 48;
+                songIndex = 24;
             }
             loadSong(songs[songIndex]);
             if (isPlaying) {
@@ -610,6 +694,62 @@
             const duration = audio.duration;
             audio.currentTime = (clickX / width) * duration;
         }
+
+        playBtn.onclick = function () {
+            var files = songs[songIndex]+ ".mp3";
+            var context = new AudioContext();
+            var src = context.createMediaElementSource(audio);
+            var analyser = context.createAnalyser();
+
+            var canvas = document.getElementById("canvas");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            var ctx = canvas.getContext("2d");
+
+            src.connect(analyser);
+            analyser.connect(context.destination);
+
+            analyser.fftSize = 256;
+
+            var bufferLength = analyser.frequencyBinCount;
+            console.log(bufferLength);
+
+            var dataArray = new Uint8Array(bufferLength);
+
+            var WIDTH = canvas.width;
+            var HEIGHT = canvas.height;
+
+            var barWidth = (WIDTH / bufferLength) * 4;
+            var barHeight;
+            var x = 0;
+
+            function renderFrame() {
+                requestAnimationFrame(renderFrame);
+
+                x = 0;
+
+                analyser.getByteFrequencyData(dataArray);
+
+                ctx.fillStyle = "#fff";
+                ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+                for (var i = 0; i < bufferLength; i++) {
+                    barHeight = dataArray[i];
+
+                    //change colors here
+                    var r = barHeight + 50 * (i / bufferLength);
+                    var g = 75 * (i / bufferLength);
+                    var b = 90;
+
+                    ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
+                    ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+
+                    x += barWidth + 1;
+                }
+            }
+            audio.play();
+            renderFrame();
+        };
 
         // next and prev buttons
         nextBtn.addEventListener('click', nextSong);
