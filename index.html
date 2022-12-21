@@ -214,22 +214,12 @@
 
         #canvas {
             position: fixed;
-            left: 20%;
+            left: 10%;
             top: 30%;
-            width: 15%;
+            width: 20%;
             height: 65%;
             background-color: rgb(255, 255, 255);
             border-radius: 30px;
-        }
-
-        @media only screen and (max-width: 925px) {
-
-            /*Big smartphones [426px -> 600px]*/
-            #canvas {
-                position: unset;
-                width: 40%;
-                height: 30%;
-            }
         }
 
         @media only screen and (max-width: 600px) {
@@ -584,6 +574,18 @@
             <center>One Dance</center>
         </div>
         <hr>
+        <div class="item" onclick="loadSong(songs[58]);playSong();songIndex=56"><img src="img/Love Nwantiti.png" alt="">
+            <center>Love Nwantiti</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[59]);playSong();songIndex=56"><img src="img/Fashion Week.png" alt="">
+            <center>Fashion Week</center>
+        </div>
+        <hr>
+        <div class="item" onclick="loadSong(songs[60]);playSong();songIndex=56"><img src="img/Here.png" alt="">
+            <center>Here</center>
+        </div>
+        <hr>
         <div class="item" onclick="loadSong(songs[0]);playSong();songIndex=0"><img src="img/Discord Remix.png" alt="">
             <center>Discord Remix</center>
         </div>
@@ -621,7 +623,8 @@
             "Young Girl A", "Toxic", "We Are!",
             "Unravel", "GIGACHAD ONE PIECE", "Can You Feel My Heart",
             "Dancin", "Departure!", "Kaikai Kitan",
-            "Bad Guy", "One Dance"
+            "Bad Guy", "One Dance", "Love Nwantiti",
+            "Fashion Week", "Here"
         ];
 
         // keep track of songs
@@ -669,7 +672,7 @@
             }
             loadSong(songs[songIndex]);
             if (songIndex > songs.length - 1) {
-                songIndex = 24;
+                songIndex = 60;
             }
             loadSong(songs[songIndex]);
             if (isPlaying) {
@@ -706,7 +709,7 @@
         }
 
         playBtn.onclick = function () {
-            var files = songs[songIndex] + ".mp3";
+            var files = songs[songIndex]+ ".mp3";
             var context = new AudioContext();
             var src = context.createMediaElementSource(audio);
             var analyser = context.createAnalyser();
