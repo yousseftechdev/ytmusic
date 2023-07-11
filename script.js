@@ -13,6 +13,7 @@ const themeToggle = document.querySelector('#toggle');
 const songList = document.querySelector('.list');
 const canvas = document.querySelector("#canvas");
 const body = document.querySelector("#bd");
+const mainTitle = document.querySelector(".title");
 
 // Song titles
 const songs = [
@@ -138,6 +139,7 @@ function theme() {
     playBtn.classList.toggle('dark');
     prevBtn.classList.toggle('dark');
     nextBtn.classList.toggle('dark');
+    mainTitle.classList.toggle('dark');
 }
 
 playBtn.onclick = function () {
