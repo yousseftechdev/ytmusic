@@ -10,292 +10,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YTMusic</title>
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-    <style>
-        @import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
-
-        /* Root */
-        ::selection {
-            background-color: rgb(230, 60, 230);
-            color: rgb(255, 255, 255);
-        }
-
-        /* Scrollbar width */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        /* Track */
-        ::-webkit-scrollbar-track {
-            border-radius: 30px;
-        }
-
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-            background: #c643c2;
-            border-radius: 30px;
-            height: 50px;
-        }
-
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-            background: #ff58f9;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            background-image: linear-gradient(to bottom,
-                    rgba(170, 180, 255),
-                    rgba(255, 150, 255));
-            background-repeat: no-repeat;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-family: "Lato", sans-serif;
-            margin: 0;
-            padding: 0;
-            font-size: larger;
-        }
-
-        .musicCon {
-            width: auto;
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 0 20px 10px rgba(255, 88, 255);
-            display: flex;
-            padding: 20px 30px;
-            position: relative;
-            margin: 10px 0;
-            z-index: 10;
-        }
-
-        .imgCon {
-            position: relative;
-            width: 110px;
-            transition: transform 0.3 ease-in-out;
-        }
-
-        .imgCon img {
-            border-radius: 50%;
-            object-fit: cover;
-            height: 110px;
-            width: inherit;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            animation: rotate 6.5s linear infinite;
-            animation-play-state: paused;
-        }
-
-        .musicCon.play .imgCon img {
-            animation-play-state: running;
-        }
-
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            z-index: 1;
-        }
-
-        .actionBtn {
-            background-color: #fff;
-            border: 5px solid rgb(200, 67, 200);
-            border-radius: 5px;
-            box-shadow: 0 0 10px 3px rgba(255, 88, 255);
-            color: rgb(200, 67, 200);
-            font-size: 20px;
-            cursor: pointer;
-            padding: 10px;
-            margin: 0 5px;
-            transition: all 1s;
-        }
-
-        .actionBtn.big {
-            color: rgb(200, 67, 200);
-            font-size: 30px;
-        }
-
-        .actionBtn:focus {
-            outline: 0;
-        }
-
-        .musicInfo {
-            background-color: rgba(255, 83, 255, 0.5);
-            color: white;
-            backdrop-filter: blur(4px);
-            border-radius: 15px 15px 0 0;
-            position: absolute;
-            top: 0;
-            left: 20px;
-            width: calc(100% - 40px);
-            padding: 10px 10px 10px 150px;
-            opacity: 0;
-            transform: translateY(100%);
-            transition: transform 0.3s ease-in, opacity 0.3s ease-in;
-            z-index: 0;
-        }
-
-        .musicCon.play .musicInfo {
-            opacity: 1;
-            transform: translateY(-100%);
-        }
-
-        .musicInfo h4 {
-            margin: 0;
-        }
-
-        .progressCon {
-            background: #6a6a6a;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 10px 0;
-            height: 10px;
-            width: 100%;
-        }
-
-        /* rgb(50, 100, 255)  */
-        .progress {
-            background: linear-gradient(to right, rgb(255, 50, 50), rgb(255, 100, 100));
-            /* background: linear-gradient(to left, rgb(255, 100, 50), rgb(255, 167, 138));*/
-            border-radius: 5px;
-            height: 100%;
-            width: 50%;
-            transition: width 80ms linear;
-        }
-
-        .title {
-            background: linear-gradient(to left, rgb(255, 0, 255), rgb(200, 141, 188));
-            color: #fff;
-            border-radius: 15px;
-            padding: 30px;
-            transition: background-color 0.3s ease-in-out, transform 2s ease-in-out;
-            animation: rotateTitle 1.5s linear infinite, hueShift 3s infinite ease-in-out;
-        }
-
-        .list {
-            width: auto;
-            height: 900px;
-            background-color: rgba(255, 255, 255);
-            border-radius: 15px;
-            box-shadow: 0 0 20px 10px rgba(255, 88, 255);
-            padding: 20px 30px;
-            margin: 15px;
-            overflow-y: scroll;
-        }
-
-        .list img {
-            border-radius: 50%;
-            object-fit: cover;
-            height: 110px;
-            width: 110px;
-        }
-
-        .item {
-            border-radius: 30px;
-            font-size: 25px;
-            transition: all 0.3s;
-        }
-
-        .item:hover {
-            background-color: rgba(200, 0, 200, 0.6);
-            color: white;
-        }
-
-        .item:active {
-            transition: all 0s;
-            background: rgb(190, 0, 190);
-            color: white;
-        }
-
-        #canvas {
-            position: fixed;
-            left: 10%;
-            top: 30%;
-            width: 20%;
-            height: 65%;
-            background-color: rgb(255, 255, 255);
-            border-radius: 30px;
-        }
-
-        @media only screen and (max-width: 600px) {
-
-            /*Big smartphones [426px -> 600px]*/
-            .musicCon {
-                width: 80%;
-            }
-
-            #canvas {
-                position: unset;
-                width: 80%;
-                height: 20%;
-            }
-        }
-
-        @media only screen and (max-width: 425px) {
-
-            /*Small smartphones [325px -> 425px]*/
-            .musicCon {
-                width: 100%;
-            }
-
-            .imgCon {
-                display: none;
-            }
-
-            .musicCon.play .imgCon {
-                display: inherit;
-                transform: translateY(-100px);
-            }
-
-            #canvas {
-                position: unset;
-                width: 100%;
-                height: 20%;
-            }
-        }
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes rotateTitle {
-            0% {
-                transform: rotate(-12deg);
-            }
-
-            50% {
-                transform: rotate(12deg);
-            }
-
-            100% {
-                transform: rotate(-12deg);
-            }
-        }
-
-        @keyframes hueShift {
-            from {
-                filter: hue-rotate(0deg);
-            }
-
-            to {
-                filter: hue-rotate(360deg);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body onload="loaded();" id="bd">
+    <label id="theme-toggle-button">
+        <input type="checkbox" id="toggle">
+        <svg viewBox="0 0 69.667 44" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(3.5 3.5)" data-name="Component 15 - 1" id="Component_15_1">
+
+
+                <g filter="url(#container)" transform="matrix(1, 0, 0, 1, -3.5, -3.5)">
+                    <rect fill="#83cbd8" transform="translate(3.5 3.5)" rx="17.5" height="35" width="60.667"
+                        data-name="container" id="container"></rect>
+                </g>
+
+                <g transform="translate(2.333 2.333)" id="button">
+
+                    <g data-name="sun" id="sun">
+                        <g filter="url(#sun-outer)" transform="matrix(1, 0, 0, 1, -5.83, -5.83)">
+                            <circle fill="#f8e664" transform="translate(5.83 5.83)" r="15.167" cy="15.167" cx="15.167"
+                                data-name="sun-outer" id="sun-outer-2"></circle>
+                        </g>
+                        <g filter="url(#sun)" transform="matrix(1, 0, 0, 1, -5.83, -5.83)">
+                            <path fill="rgba(246,254,247,0.29)" transform="translate(9.33 9.33)"
+                                d="M11.667,0A11.667,11.667,0,1,1,0,11.667,11.667,11.667,0,0,1,11.667,0Z" data-name="sun"
+                                id="sun-3"></path>
+                        </g>
+                        <circle fill="#fcf4b9" transform="translate(8.167 8.167)" r="7" cy="7" cx="7" id="sun-inner">
+                        </circle>
+                    </g>
+
+
+                    <g data-name="moon" id="moon">
+                        <g filter="url(#moon)" transform="matrix(1, 0, 0, 1, -31.5, -5.83)">
+                            <circle fill="#cce6ee" transform="translate(31.5 5.83)" r="15.167" cy="15.167" cx="15.167"
+                                data-name="moon" id="moon-3"></circle>
+                        </g>
+                        <g fill="#a6cad0" transform="translate(-24.415 -1.009)" id="patches">
+                            <circle transform="translate(43.009 4.496)" r="2" cy="2" cx="2"></circle>
+                            <circle transform="translate(39.366 17.952)" r="2" cy="2" cx="2" data-name="patch"></circle>
+                            <circle transform="translate(33.016 8.044)" r="1" cy="1" cx="1" data-name="patch"></circle>
+                            <circle transform="translate(51.081 18.888)" r="1" cy="1" cx="1" data-name="patch"></circle>
+                            <circle transform="translate(33.016 22.503)" r="1" cy="1" cx="1" data-name="patch"></circle>
+                            <circle transform="translate(50.081 10.53)" r="1.5" cy="1.5" cx="1.5" data-name="patch">
+                            </circle>
+                        </g>
+                    </g>
+                </g>
+
+
+                <g filter="url(#cloud)" transform="matrix(1, 0, 0, 1, -3.5, -3.5)">
+                    <path fill="#fff" transform="translate(-3466.47 -160.94)"
+                        d="M3512.81,173.815a4.463,4.463,0,0,1,2.243.62.95.95,0,0,1,.72-1.281,4.852,4.852,0,0,1,2.623.519c.034.02-.5-1.968.281-2.716a2.117,2.117,0,0,1,2.829-.274,1.821,1.821,0,0,1,.854,1.858c.063.037,2.594-.049,3.285,1.273s-.865,2.544-.807,2.626a12.192,12.192,0,0,1,2.278.892c.553.448,1.106,1.992-1.62,2.927a7.742,7.742,0,0,1-3.762-.3c-1.28-.49-1.181-2.65-1.137-2.624s-1.417,2.2-2.623,2.2a4.172,4.172,0,0,1-2.394-1.206,3.825,3.825,0,0,1-2.771.774c-3.429-.46-2.333-3.267-2.2-3.55A3.721,3.721,0,0,1,3512.81,173.815Z"
+                        data-name="cloud" id="cloud"></path>
+                </g>
+
+
+                <g fill="#def8ff" transform="translate(3.585 1.325)" id="stars">
+                    <path transform="matrix(-1, 0.017, -0.017, -1, 24.231, 3.055)"
+                        d="M.774,0,.566.559,0,.539.458.933.25,1.492l.485-.361.458.394L1.024.953,1.509.592.943.572Z">
+                    </path>
+                    <path transform="matrix(-0.777, 0.629, -0.629, -0.777, 23.185, 12.358)"
+                        d="M1.341.529.836.472.736,0,.505.46,0,.4.4.729l-.231.46L.605.932l.4.326L.9.786Z"
+                        data-name="star"></path>
+                    <path transform="matrix(0.438, 0.899, -0.899, 0.438, 23.177, 29.735)"
+                        d="M.015,1.065.475.9l.285.365L.766.772l.46-.164L.745.494.751,0,.481.407,0,.293.285.658Z"
+                        data-name="star"></path>
+                    <path transform="translate(12.677 0.388) rotate(104)"
+                        d="M1.161,1.6,1.059,1,1.574.722.962.607.86,0,.613.572,0,.457.446.881.2,1.454l.516-.274Z"
+                        data-name="star"></path>
+                    <path transform="matrix(-0.07, 0.998, -0.998, -0.07, 11.066, 15.457)"
+                        d="M.873,1.648l.114-.62L1.579.945,1.03.62,1.144,0,.706.464.157.139.438.7,0,1.167l.592-.083Z"
+                        data-name="star"></path>
+                    <path transform="translate(8.326 28.061) rotate(11)"
+                        d="M.593,0,.638.724,0,.982l.7.211.045.724.36-.64.7.211L1.342.935,1.7.294,1.063.552Z"
+                        data-name="star"></path>
+                    <path transform="translate(5.012 5.962) rotate(172)"
+                        d="M.816,0,.5.455,0,.311.323.767l-.312.455.516-.215.323.456L.827.911,1.343.7.839.552Z"
+                        data-name="star"></path>
+                    <path transform="translate(2.218 14.616) rotate(169)"
+                        d="M1.261,0,.774.571.114.3.487.967,0,1.538.728,1.32l.372.662.047-.749.728-.218L1.215.749Z"
+                        data-name="star"></path>
+                </g>
+            </g>
+        </svg>
+    </label>
     <h1 class="title">YTMusic</h1>
     <div class="musicCon">
         <div class="musicInfo">
@@ -309,20 +109,19 @@
             <img src="img/favicon.png" id="cover" />
         </div>
         <div class="nav">
-            <button id="prev" class="actionBtn">
+            <button id="prev" class="actionBtn ">
                 <i class="fas fa-backward"></i>
             </button>
-            <button id="play" class="actionBtn big">
+            <button id="play" class="actionBtn big ">
                 <i class="fas fa-play"></i>
             </button>
-            <button id="next" class="actionBtn">
+            <button id="next" class="actionBtn ">
                 <i class="fas fa-forward"></i>
             </button>
         </div>
     </div>
     <canvas id="canvas"></canvas>
     <div class="list">
-
         <div class="item" onclick="loadSong(songs[1]);playSong();songIndex=1"><img src="img/Space Worm Food.png" alt="">
             <center>Space Worm Food</center>
         </div>
@@ -590,187 +389,20 @@
             <center>Discord Remix</center>
         </div>
     </div>
-    <script>
-        const musicCon = document.querySelector('.musicCon');
-        const playBtn = document.querySelector('#play');
-        const prevBtn = document.querySelector('#prev');
-        const nextBtn = document.querySelector('#next');
-        const progress = document.querySelector('.progress');
-        const audio = document.querySelector('#audio');
-        const progressCon = document.querySelector('.progressCon');
-        const title = document.querySelector('#title');
-        const cover = document.querySelector('#cover');
-        const audioCtx = new AudioContext();
-
-        // Song titles
-        const songs = [
-            "Discord Remix", "Space Worm Food", "Wii Shop Music",
-            "Lancer Theme Remix", "Lofi", "Superstitous Foundation",
-            "Chiptune", "Chiller", "The Windows Update",
-            "The Search Engine", "Noir Et Blanc Vie Birth Noir", "Poltergeist",
-            "Haunted", "Ksyantos", "The Bywater",
-            "Smartphone Calling Back", "Creo - We Can Dream",
-            "Akihabara Cruise", "Blue Bird Lofi", "A cuel angels theisis lofi",
-            "Zankyou Sanka", "Gurenge Lofi", "Golden Wind Lofi",
-            "Netsujou no Spectrum", "Zenitsu Theme", "Tanjiro No Uta Lofi",
-            "Pumped Up Kicks", "Next To You", "La La La",
-            "Industry Baby", "Enemy", "Bones",
-            "Venom", "Rap God", "We Go!",
-            "Hard Knock Days", "Blue Bird (English)", "House Of Memories",
-            "Bad Apple", "Bad Apple (English)", "Heat Waves",
-            "Living Life In The Night", "Dark Seeks Light", "Light Switch",
-            "Light Switch (Japanese)", "Rise", "Levitating",
-            "Young Girl A", "Toxic", "We Are!",
-            "Unravel", "GIGACHAD ONE PIECE", "Can You Feel My Heart",
-            "Dancin", "Departure!", "Kaikai Kitan",
-            "Bad Guy", "One Dance", "Love Nwantiti",
-            "Fashion Week", "Here"
-        ];
-
-        // keep track of songs
-        let songIndex = 31;
-
-        // update song details
-        function loadSong(song) {
-            title.innerHTML = song;
-            audio.src = `audio/${song}.mp3`;
-            cover.src = `img/${song}.png`;
-        }
-
-        // Load the song
-        loadSong(songs[songIndex]);
-
-
-        playBtn.addEventListener('click', () => {
-            const isPlaying = musicCon.classList.contains('play');
-            if (isPlaying) {
-                pauseSong();
-            }
-            else {
-                playSong();
-            }
-        });
-
-        // functions
-        function playSong() {
-            musicCon.classList.add('play');
-            playBtn.querySelector('i.fas').classList.remove('fa-play');
-            playBtn.querySelector('i.fas').classList.add('fa-pause');
-            audio.play();
-        }
-        function pauseSong() {
-            musicCon.classList.remove('play');
-            playBtn.querySelector('i.fas').classList.remove('fa-pause');
-            playBtn.querySelector('i.fas').classList.add('fa-play');
-            audio.pause();
-        }
-        function prevSong() {
-            const isPlaying = musicCon.classList.contains("play")
-            songIndex--;
-            if (songIndex < 0) {
-                songIndex = songs.length - 1;
-            }
-            loadSong(songs[songIndex]);
-            if (songIndex > songs.length - 1) {
-                songIndex = 60;
-            }
-            loadSong(songs[songIndex]);
-            if (isPlaying) {
-                playSong();
-            }
-            else {
-                return
-            }
-        }
-        function nextSong() {
-            const isPlaying = musicCon.classList.contains("play")
-            songIndex++;
-            if (songIndex > songs.length - 1) {
-                songIndex = 0;
-            }
-            loadSong(songs[songIndex]);
-            if (isPlaying != true) {
-                return
-            }
-            else {
-                playSong();
-            }
-        }
-        function updateProgress(e) {
-            const { duration, currentTime } = e.srcElement;
-            const progressPercent = (currentTime / duration) * 100;
-            progress.style.width = `${progressPercent}%`;
-        }
-        function setProgress(e) {
-            const width = this.clientWidth;
-            const clickX = e.offsetX;
-            const duration = audio.duration;
-            audio.currentTime = (clickX / width) * duration;
-        }
-
-        playBtn.onclick = function () {
-            var files = songs[songIndex]+ ".mp3";
-            var context = new AudioContext();
-            var src = context.createMediaElementSource(audio);
-            var analyser = context.createAnalyser();
-
-            var canvas = document.getElementById("canvas");
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            var ctx = canvas.getContext("2d");
-
-            src.connect(analyser);
-            analyser.connect(context.destination);
-
-            analyser.fftSize = 256;
-
-            var bufferLength = analyser.frequencyBinCount;
-            console.log(bufferLength);
-
-            var dataArray = new Uint8Array(bufferLength);
-
-            var WIDTH = canvas.width;
-            var HEIGHT = canvas.height;
-
-            var barWidth = (WIDTH / bufferLength) * 4;
-            var barHeight;
-            var x = 0;
-
-            function renderFrame() {
-                requestAnimationFrame(renderFrame);
-
-                x = 0;
-
-                analyser.getByteFrequencyData(dataArray);
-
-                ctx.fillStyle = "#fff";
-                ctx.fillRect(0, 0, WIDTH, HEIGHT);
-
-                for (var i = 0; i < bufferLength; i++) {
-                    barHeight = dataArray[i];
-
-                    //change colors here
-                    var r = barHeight + 50 * (i / bufferLength);
-                    var g = 75 * (i / bufferLength);
-                    var b = 90;
-
-                    ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
-                    ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
-
-                    x += barWidth + 1;
-                }
-            }
-            audio.play();
-            renderFrame();
-        };
-
-        // next and prev buttons
-        nextBtn.addEventListener('click', nextSong);
-        prevBtn.addEventListener('click', prevSong);
-        audio.addEventListener('timeupdate', updateProgress);
-        progressCon.addEventListener('click', setProgress);
-        audio.addEventListener('ended', nextSong);
-    </script>
+    <div class="load-wrapper">
+        <div class="loader">
+            <div class="cell d-0"></div>
+            <div class="cell d-1"></div>
+            <div class="cell d-2"></div>
+            <div class="cell d-1"></div>
+            <div class="cell d-2"></div>
+            <div class="cell d-2"></div>
+            <div class="cell d-3"></div>
+            <div class="cell d-3"></div>
+            <div class="cell d-4"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 
 </html>

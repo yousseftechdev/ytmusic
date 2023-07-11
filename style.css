@@ -1,0 +1,496 @@
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+
+/* Root */
+::selection {
+    background-color: rgb(230, 60, 230);
+    color: rgb(255, 255, 255);
+}
+
+/* Scrollbar width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 30px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #c643c2;
+    border-radius: 30px;
+    height: 50px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #ff58f9;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body.dark {
+    background-image: linear-gradient(to bottom,
+            #535982,
+            #825182)
+}
+
+body {
+    background-image: linear-gradient(to bottom,
+            #7786ff,
+            #ff7aff);
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Lato", sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: larger;
+    transition: all 0.5s;
+}
+
+.musicCon {
+    width: auto;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px 10px rgba(255, 88, 255);
+    display: flex;
+    padding: 20px 30px;
+    position: relative;
+    margin: 10px 0;
+    z-index: 10;
+    transition: all 0.5s;
+}
+
+.musicCon.dark {
+    background-color: #424242;
+    box-shadow: 0 0 30px 5px rgb(215, 76, 215);
+}
+
+.imgCon {
+    position: relative;
+    width: 110px;
+    transition: transform 0.3 ease-in-out;
+}
+
+.imgCon img {
+    border-radius: 50%;
+    object-fit: cover;
+    height: 110px;
+    width: inherit;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    animation: rotate 6.5s linear infinite;
+    animation-play-state: paused;
+}
+
+.musicCon.play .imgCon img {
+    animation-play-state: running;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 1;
+}
+
+.actionBtn {
+    background-color: #fff;
+    border: 5px solid rgb(200, 67, 200);
+    border-radius: 20px;
+    box-shadow: 0 0 10px 3px rgb(171, 58, 171);
+    color: rgb(200, 67, 200);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0 5px;
+    transition: all 0.4s;
+}
+
+.actionBtn.dark {
+    background-color: #424242;
+    box-shadow: 0 0 30px 5px rgb(169, 58, 169);
+}
+
+.actionBtn.big {
+    color: rgb(200, 67, 200);
+    font-size: 30px;
+}
+
+.actionBtn:focus {
+    outline: 0;
+}
+
+.musicInfo {
+    background-color: rgba(255, 83, 255, 0.5);
+    color: white;
+    backdrop-filter: blur(4px);
+    border-radius: 15px 15px 0 0;
+    position: absolute;
+    top: 0;
+    left: 20px;
+    width: calc(100% - 40px);
+    padding: 10px 10px 10px 150px;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+    z-index: 0;
+}
+
+.musicCon.play .musicInfo {
+    opacity: 1;
+    transform: translateY(-100%);
+}
+
+.musicInfo h4 {
+    margin: 0;
+}
+
+.progressCon {
+    background: #6a6a6a;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+    height: 10px;
+    width: 100%;
+}
+
+/* rgb(50, 100, 255)  */
+.progress {
+    background: linear-gradient(to right, rgb(255, 50, 50), rgb(255, 100, 100));
+    /* background: linear-gradient(to left, rgb(255, 100, 50), rgb(255, 167, 138));*/
+    border-radius: 5px;
+    height: 100%;
+    width: 50%;
+    transition: width 80ms linear;
+}
+
+.title {
+    background: linear-gradient(to left, rgb(255, 0, 255), rgb(200, 141, 188));
+    color: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    transition: background-color 0.3s ease-in-out, transform 2s ease-in-out;
+    animation: rotateTitle 1.5s linear infinite, hueShift 3s infinite ease-in-out;
+}
+
+.title.dark {
+    background: #fff;
+    color: #000;
+}
+
+.list {
+    width: auto;
+    height: 900px;
+    background-color: rgba(255, 255, 255);
+    border-radius: 15px;
+    box-shadow: 0 0 20px 10px rgba(255, 88, 255);
+    padding: 20px 30px;
+    margin: 15px;
+    overflow-y: scroll;
+    transition: all 0.5s;
+}
+
+.list.dark {
+    background-color: #424242;
+    box-shadow: 0 0 30px 5px rgb(215, 76, 215);
+    color: #fff
+}
+
+.list img {
+    border-radius: 50%;
+    object-fit: cover;
+    height: 110px;
+    width: 110px;
+}
+
+.item {
+    border-radius: 30px;
+    font-size: 25px;
+    transition: all 0.3s;
+}
+
+.item:hover {
+    background-color: rgba(200, 0, 200, 0.6);
+    color: white;
+}
+
+.item:active {
+    transition: all 0s;
+    background: rgb(190, 0, 190);
+    color: white;
+}
+
+canvas {
+    position: fixed;
+    left: 10%;
+    top: 30%;
+    width: 20%;
+    height: 65%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    transition: all 0.5s;
+}
+
+canvas.dark {
+    background-color: #424242;
+    box-shadow: 0 0 30px 5px rgb(215, 76, 215);
+}
+
+.load-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #212121;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    transition: all 0.5;
+}
+
+.loader {
+    --cell-size: 52px;
+    --cell-spacing: 1px;
+    --cells: 3;
+    --total-size: calc(var(--cells) * (var(--cell-size) + 2 * var(--cell-spacing)));
+    display: flex;
+    flex-wrap: wrap;
+    width: var(--total-size);
+    height: var(--total-size);
+}
+
+.cell {
+    flex: 0 0 var(--cell-size);
+    margin: var(--cell-spacing);
+    background-color: transparent;
+    box-sizing: border-box;
+    border-radius: 4px;
+    animation: 1.5s ripple ease infinite;
+}
+
+.cell.d-1 {
+    animation-delay: 100ms;
+}
+
+.cell.d-2 {
+    animation-delay: 200ms;
+}
+
+.cell.d-3 {
+    animation-delay: 300ms;
+}
+
+.cell.d-4 {
+    animation-delay: 400ms;
+}
+
+.cell:nth-child(1) {
+    --cell-color: #00FF87;
+}
+
+.cell:nth-child(2) {
+    --cell-color: #0CFD95;
+}
+
+.cell:nth-child(3) {
+    --cell-color: #17FBA2;
+}
+
+.cell:nth-child(4) {
+    --cell-color: #23F9B2;
+}
+
+.cell:nth-child(5) {
+    --cell-color: #30F7C3;
+}
+
+.cell:nth-child(6) {
+    --cell-color: #3DF5D4;
+}
+
+.cell:nth-child(7) {
+    --cell-color: #45F4DE;
+}
+
+.cell:nth-child(8) {
+    --cell-color: #53F1F0;
+}
+
+.cell:nth-child(9) {
+    --cell-color: #60EFFF;
+}
+
+.fadeout {
+    display: none;
+}
+
+/* The switch - the box around the slider */
+#theme-toggle-button {
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 7em;
+    cursor: pointer;
+}
+
+/* Hide default HTML checkbox */
+#toggle {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+#container,
+#patches,
+#stars,
+#button,
+#sun,
+#moon,
+#cloud {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.25s;
+}
+
+/* night sky background */
+#toggle:checked+svg #container {
+    fill: #2b4360;
+}
+
+/* move button to right when checked */
+#toggle:checked+svg #button {
+    transform: translate(28px, 2.333px);
+}
+
+/* show/hide sun and moon based on checkbox state */
+#sun {
+    opacity: 1;
+}
+
+#toggle:checked+svg #sun {
+    opacity: 0;
+}
+
+#moon {
+    opacity: 0;
+}
+
+#toggle:checked+svg #moon {
+    opacity: 1;
+}
+
+/* show or hide background items on checkbox state */
+#cloud {
+    opacity: 1;
+}
+
+#toggle:checked+svg #cloud {
+    opacity: 0;
+}
+
+#stars {
+    opacity: 0;
+}
+
+#toggle:checked+svg #stars {
+    opacity: 1;
+}
+
+@media only screen and (max-width: 600px) {
+
+    /*Big smartphones [426px -> 600px]*/
+    .musicCon {
+        width: 80%;
+    }
+
+    #canvas {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+
+    /*Small smartphones [325px -> 425px]*/
+    .musicCon {
+        width: 100%;
+    }
+
+    .imgCon {
+        display: none;
+    }
+
+    .musicCon.play .imgCon {
+        display: inherit;
+        transform: translateY(-100px);
+    }
+
+    #canvas {
+        position: unset;
+        width: 100%;
+        height: 20%;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotateTitle {
+    0% {
+        transform: rotate(-12deg);
+    }
+
+    50% {
+        transform: rotate(12deg);
+    }
+
+    100% {
+        transform: rotate(-12deg);
+    }
+}
+
+@keyframes hueShift {
+    from {
+        filter: hue-rotate(0deg);
+    }
+
+    to {
+        filter: hue-rotate(360deg);
+    }
+}
+
+@keyframes ripple {
+    0% {
+        background-color: transparent;
+    }
+
+    30% {
+        background-color: var(--cell-color);
+        box-shadow: 0 0 10px var(--cell-color);
+    }
+
+    60% {
+        background-color: transparent;
+    }
+
+    100% {
+        background-color: transparent;
+    }
+}
