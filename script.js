@@ -18,7 +18,7 @@ const mainTitle = document.querySelector(".title");
 // Song titles
 const songs = [
     "Discord Remix", "Space Worm Food", "Wii Shop Music",
-    "Lancer Theme Remix", "Lofi", "Superstitous Foundation",
+    "Lancer Theme Remix", "Lofi", "Superstitious Foundation",
     "Place Holder" ,"Chiller", "The Windows Update",
     "The Search Engine", "Noir Et Blanc Vie Birth Noir", "Poltergeist",
     "Haunted", "Ksyantos", "The Bywater",
