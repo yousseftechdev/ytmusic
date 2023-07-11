@@ -18,7 +18,7 @@ const body = document.querySelector("#bd");
 const songs = [
     "Discord Remix", "Space Worm Food", "Wii Shop Music",
     "Lancer Theme Remix", "Lofi", "Superstitous Foundation",
-    "Chiptune", "Chiller", "The Windows Update",
+    "Chiller", "The Windows Update",
     "The Search Engine", "Noir Et Blanc Vie Birth Noir", "Poltergeist",
     "Haunted", "Ksyantos", "The Bywater",
     "Smartphone Calling Back", "Creo - We Can Dream",
