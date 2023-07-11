@@ -52,7 +52,7 @@ body {
     margin: 0;
     padding: 0;
     font-size: larger;
-    transition: all 0.5s;
+    transition: all 1s;
 }
 
 .musicCon {
@@ -65,7 +65,7 @@ body {
     position: relative;
     margin: 10px 0;
     z-index: 10;
-    transition: all 0.5s;
+    transition: all 1s;
 }
 
 .musicCon.dark {
@@ -112,7 +112,7 @@ body {
     cursor: pointer;
     padding: 10px;
     margin: 0 5px;
-    transition: all 0.4s;
+    transition: all 1s;
 }
 
 .actionBtn.dark {
@@ -178,13 +178,15 @@ body {
     color: #fff;
     border-radius: 15px;
     padding: 30px;
-    transition: background-color 0.3s ease-in-out, transform 2s ease-in-out;
+    transition: background-color 0.3s ease-in-out, transform 2s ease-in-out, color 1s;
     animation: rotateTitle 1.5s linear infinite, hueShift 3s infinite ease-in-out;
 }
 
 .title.dark {
-    background: #fff;
-    color: #000;
+    background: #212121;
+    color: #fff;
+    animation: none;
+    animation: rotateTitle 1.5s linear infinite;
 }
 
 .list {
@@ -196,7 +198,7 @@ body {
     padding: 20px 30px;
     margin: 15px;
     overflow-y: scroll;
-    transition: all 0.5s;
+    transition: all 1s;
 }
 
 .list.dark {
@@ -237,7 +239,7 @@ canvas {
     height: 65%;
     background-color: rgb(255, 255, 255);
     border-radius: 30px;
-    transition: all 0.5s;
+    transition: all 1s;
 }
 
 canvas.dark {
@@ -261,8 +263,8 @@ canvas.dark {
 
 .loader {
     --cell-size: 52px;
-    --cell-spacing: 1px;
-    --cells: 3;
+    --cell-spacing: 5px;
+    --cells: 4;
     --total-size: calc(var(--cells) * (var(--cell-size) + 2 * var(--cell-spacing)));
     display: flex;
     flex-wrap: wrap;
@@ -293,6 +295,18 @@ canvas.dark {
 
 .cell.d-4 {
     animation-delay: 400ms;
+}
+
+.cell.d-5 {
+    animation-delay: 500ms;
+}
+
+.cell.d-6 {
+    animation-delay: 600ms;
+}
+
+.cell.d-7 {
+    animation-delay: 700ms;
 }
 
 .cell:nth-child(1) {
@@ -331,6 +345,34 @@ canvas.dark {
     --cell-color: #60EFFF;
 }
 
+.cell:nth-child(10) {
+    --cell-color: #60afff;
+}
+
+.cell:nth-child(11) {
+    --cell-color: #3377ff;
+}
+
+.cell:nth-child(12) {
+    --cell-color: #384cff;
+}
+
+.cell:nth-child(13) {
+    --cell-color: #5b50ff;
+}
+
+.cell:nth-child(14) {
+    --cell-color: #633cff;
+}
+
+.cell:nth-child(15) {
+    --cell-color: #9549ff;
+}
+
+.cell:nth-child(16) {
+    --cell-color: #ad48fb;
+}
+
 .fadeout {
     display: none;
 }
@@ -339,6 +381,8 @@ canvas.dark {
 #theme-toggle-button {
     font-size: 17px;
     position: relative;
+    top: 0;
+    left: 30%;
     display: inline-block;
     width: 7em;
     cursor: pointer;
